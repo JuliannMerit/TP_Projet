@@ -1,15 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
 public class Plateau {
     private int nbLignes;
     private int nbColonnes;
     private int nbBombes;
-    private int pourcentageBombes;
     private List<List<Case>> lesCases;
 
     public Plateau(int nbLignes, int nbColonnes, int nbBombes) {
         this.nbLignes = nbLignes;
         this.nbColonnes = nbColonnes;
         this.nbBombes = nbBombes;
-        this.pourcentageBombes = (nbBombes * 100) / (nbLignes * nbColonnes);
         this.lesCases = new ArrayList<List<Case>>();
         for (int i = 0; i < nbLignes; i++) {
             List<Case> ligne = new ArrayList<Case>();
@@ -20,14 +20,14 @@ public class Plateau {
         }
     }
     public int getNbLignes() {
-        return nbLignes;
+        return this.nbLignes;
     }
 
     public int getNbColonnes() {
-        return nbColonnes;
+        return this.nbColonnes;
     }
 
     public int getNbBombes() {
-        return nbBombes;
+        return this.nbBombes;
     }
 }
