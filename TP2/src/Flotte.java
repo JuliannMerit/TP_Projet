@@ -44,14 +44,34 @@ public class Flotte {
     }
 
     public int nombreDeVaisseauxSansPassagers(){
-        return 0;
+        int total = 0;
+        for (Vaisseau vaisseau : this.listeVaisseaux){
+            if (!vaisseau.transportePassagers()){
+                total++;
+            }
+        }
+        return total;
     }
 
     public int puissanceDeFeuMax(){
-        return 0;
+        int max = 0;
+        for (Vaisseau vaisseau : this.listeVaisseaux){
+            if (vaisseau.getPuissance() > max){
+                max = vaisseau.getPuissance();
+            }
+        }
+        return max;
     }
 
     public String nomDuVaisseauLeMoinsPuissant(){
-        return "";
+        String nom = "";
+        int min = Integer.MAX_VALUE;
+        for (Vaisseau vaisseau : this.listeVaisseaux){
+            if (vaisseau.getPuissance() < min){
+                min = vaisseau.getPuissance();
+                nom = vaisseau.getNom();
+            }
+        }
+        return nom;
     }
 }
