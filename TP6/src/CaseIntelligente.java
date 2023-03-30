@@ -32,6 +32,6 @@ public class CaseIntelligente extends Case{
         }else if(estMarquee()){
             return "?";
         }
-        return " merci :)";
+        return " ";
     }
 }

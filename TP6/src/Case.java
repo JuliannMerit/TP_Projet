@@ -1,4 +1,4 @@
-public class Case {
+public class Case{
     private boolean contientUneBombe;
     private boolean estDecouverte;
     private boolean estMarquee;
