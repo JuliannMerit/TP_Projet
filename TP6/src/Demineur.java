@@ -15,20 +15,44 @@ public class Demineur extends Plateau{
     }
 
     public void reveler(int x, int y){
-
+        if(!super.getCase(x, y).estMarquee()){
+            super.getCase(x, y).reveler();
+            score += 1;
+        }
     }
 
     public void marquer(int x, int y){
-
+        if(!super.getCase(x, y).estDecouverte()){
+            super.getCase(x, y).marquer();
+        }
     }
 
     public boolean estGagnee(){
-        return false;
+        int res = 0;
+        for (int i = 0; i < getNbLignes(); i++) {
+            for (int j = 0; j < getNbColonnes(); j++){
+                if(super.getCase(i, j).estDecouverte()){
+                    res+=1;
+                }
+            }
+        }
+        return super.getNbLignes()*super.getNbColonnes() - res == super.getNbTotalBombes();
     }
 
     public boolean estPerdue(){
+        for (int i = 0; i < getNbLignes(); i++) {
+            for (int j = 0; j < getNbColonnes(); j++){
+                if(super.getCase(i, j).estDecouverte()){
+                    if (super.getCase(i, j).contientUneBombe()){
+                        gameOver = true;
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
+
 
     public void reset(){
         this.gameOver = false;
@@ -89,7 +113,7 @@ public class Demineur extends Plateau{
         this.affiche();
         Scanner scan = new Scanner(System.in).useDelimiter("\n");
 
-        while (!this.estPerdue() || this.estGagnee()){
+        while (!this.estPerdue() && !this.estGagnee()){
             System.out.println("Entrer une instruction de la forme R 3 2 ou M 3 2\npour Révéler/Marquer la case à la ligne 3 et à la colonne 2");
             String [] s = scan.nextLine().split(" ");
             String action = s[0];

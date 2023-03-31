@@ -14,6 +14,8 @@ public class Plateau {
         this.nbColonnes = nbColonnes;
         this.pourcentageDeBombes = pourcentage;
         this.lePlateau = new ArrayList<List<CaseIntelligente>>();
+        this.creeLesCasesVides();
+        this.rendLesCasesIntelligentes();
     }
 
     private void creeLesCasesVides(){
@@ -67,14 +69,7 @@ public class Plateau {
     }
 
     public CaseIntelligente getCase(int numLigne, int numColonne){
-        for (int i = 0; i < nbLignes; i++) {
-            for (int j = 0; j < nbColonnes; j++) {
-                if (i == numLigne && j == numColonne) {
-                    return lePlateau.get(i).get(j);
-                }
-            }
-        }
-        return null;
+        return this.lePlateau.get(numLigne).get(numColonne);
     }
 
     public int getNbCasesMarquees(){
@@ -90,7 +85,7 @@ public class Plateau {
     }
 
     public void poseBombe(int x, int y){
-        getCase(x, y).poseBombe();
+        this.getCase(x, y).poseBombe();
     }
 
     public void reset(){

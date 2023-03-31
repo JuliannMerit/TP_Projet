@@ -36,6 +36,10 @@ public class Case{
     }
 
     public void marquer() {
-        this.estMarquee = true;
+        if(!this.estMarquee){
+            this.estMarquee = true;
+        }else{
+            this.estMarquee = false;
+        }
     }
 }
